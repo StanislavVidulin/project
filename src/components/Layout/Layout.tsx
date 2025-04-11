@@ -1,64 +1,41 @@
 import { v4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 
-import {
-  LayoutComponent,
-  Header,
-  LogoText,
-  Nav,
-  Main,
-  Footer,
-  StyledNavLink,
-  LogoImage,
-  ButtonContainer,
-} from "./styles";
-import { JokeTextInterface, LayoutProps, NavLinkObj } from "./types";
+import { LayoutProps, NavLinkObj, UserContextInterface } from "./types";
 import { navLinksData } from "./data";
-import Logo from "../../assets/avatar.jpg";
-import Button from "../Button/Button";
+import { StyledNavLink, LayoutComponent, Header, Nav, Main, Footer, LogoText } from "./styles";
 import axios from "axios";
 import { createContext, useState } from "react";
+import Button from "../Button/Button";
 
-export const JokeContext = createContext<JokeTextInterface>({
-  joke: undefined,
+export const UserContext = createContext<UserContextInterface>({
+  userData: undefined,
   error: undefined,
   isLoading: false,
-  getJoke: () => {},
-});
+  getUser: () => {}
+}) 
 
 function Layout({ children }: LayoutProps) {
 
-  const [joke, setJoke] = useState<string | undefined>(undefined);
+  const [userData, setUserData] = useState<any>(undefined);
   const [error, setError] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const JOKE_URL: string = "https://official-joke-api.appspot.com/random_joke";
+  const GET_USER_URL: string = 'https://randomuser.me/api/';
 
-  const getJoke = async () => {
-    setError(undefined);
+  const getUser = async () => {
+
     try {
+      const response = await axios.get(GET_USER_URL);
+      setUserData(response.data.results[0]);
       setIsLoading(true);
-      const response = await axios.get(JOKE_URL);
-      console.log(response.data);
-      const data = response.data;
-      setJoke(`${data.setup} - ${data.punchline}`);
-    } catch (error: any) {
-      console.log(error.message);
-
+    } catch(error: any) {
       setError(error.message);
     } finally {
-      console.log("Результат получен");
-      setIsLoading(false);
+      // setIsLoading(false);
     }
-  };
 
-  const navigate = useNavigate();
-
-  const goBack = () => {
-    // при вызове функции navigate, если добавить в качестве атрибута -1,
-    // тогда при выполнении функции нас всегда будет возвращать на предыдущую открытую страницу
-    navigate(-1);
-  };
+  }
 
   const navLinks = navLinksData.map((navLink: NavLinkObj) => {
     return (
@@ -75,27 +52,24 @@ function Layout({ children }: LayoutProps) {
   });
 
   return (
-    <JokeContext.Provider value={{joke, error, isLoading, getJoke}}>
+    <UserContext.Provider value={{
+      userData, error, isLoading, getUser
+    }}>
       <LayoutComponent>
         <Header>
           <Link to="/">
-            <LogoImage src={Logo} />
           </Link>
           <Nav>
-            {/* NavLink - компонент библиотеки, который добавляет ссылку на
-                    страницу по маршруту через prop to='' */}
             {navLinks}
           </Nav>
         </Header>
-        <Main>{children}</Main>
+        <Main>{children}
+        </Main>
         <Footer>
-          <ButtonContainer>
-            <Button name="<-" onClick={goBack} />
-          </ButtonContainer>
           <LogoText>Company name</LogoText>
         </Footer>
       </LayoutComponent>
-    </JokeContext.Provider>
+      </UserContext.Provider>
   );
 }
 

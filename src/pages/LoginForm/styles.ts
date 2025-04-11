@@ -18,3 +18,9 @@ export const Title = styled.div`
   font-size: 26px;
   font-weight: bold;
 `;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

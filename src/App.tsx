@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
 import GlobalStyles from "./styles/GlobalStyles";
-import LoginForm from "./components/LoginForm/LoginForm";
+import LoginForm from "./pages/LoginForm/LoginForm";
 import UserData from "./pages/UserData/UserData";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <GlobalStyles />
       <Layout>
         <Routes>
-          <Route path='/loginForm' element={<LoginForm/>}/>
+          <Route path='/loginForm' element={<LoginForm />}/>
           <Route path='/userData' element={<UserData />}/>
         </Routes>
       </Layout>
