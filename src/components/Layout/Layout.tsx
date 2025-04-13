@@ -3,39 +3,49 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { LayoutProps, NavLinkObj, UserContextInterface } from "./types";
 import { navLinksData } from "./data";
-import { StyledNavLink, LayoutComponent, Header, Nav, Main, Footer, LogoText } from "./styles";
+import {
+  StyledNavLink,
+  LayoutComponent,
+  Header,
+  Nav,
+  Main,
+  Footer,
+  Ticker,
+} from "./styles";
 import axios from "axios";
 import { createContext, useState } from "react";
-import Button from "../Button/Button";
 
 export const UserContext = createContext<UserContextInterface>({
   userData: undefined,
   error: undefined,
   isLoading: false,
-  getUser: () => {}
-}) 
+  getUser: () => {},
+});
 
 function Layout({ children }: LayoutProps) {
-
   const [userData, setUserData] = useState<any>(undefined);
   const [error, setError] = useState<string | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const GET_USER_URL: string = 'https://randomuser.me/api/';
+  const GET_USER_URL: string = "https://randomuser.me/api/";
+
+  const navigate = useNavigate();
 
   const getUser = async () => {
+    setError(undefined);
 
     try {
-      const response = await axios.get(GET_USER_URL);
-      setUserData(response.data.results[0]);
       setIsLoading(true);
-    } catch(error: any) {
+      const response = await axios.get(GET_USER_URL);
+      const data = response.data.results[0];
+      setUserData(data);
+      navigate("/userData");
+    } catch (error: any) {
       setError(error.message);
     } finally {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
-
-  }
+  };
 
   const navLinks = navLinksData.map((navLink: NavLinkObj) => {
     return (
@@ -52,24 +62,28 @@ function Layout({ children }: LayoutProps) {
   });
 
   return (
-    <UserContext.Provider value={{
-      userData, error, isLoading, getUser
-    }}>
+    <UserContext.Provider
+      value={{
+        userData,
+        error,
+        isLoading,
+        getUser,
+      }}
+    >
       <LayoutComponent>
         <Header>
-          <Link to="/">
-          </Link>
-          <Nav>
-            {navLinks}
-          </Nav>
+          <Link to="/"></Link>
+          <Nav>{navLinks}</Nav>
         </Header>
-        <Main>{children}
-        </Main>
+        <Main>{children}</Main>
         <Footer>
-          <LogoText>Company name</LogoText>
+          <Ticker>
+            Dream Team: Iryna Oleinikova, Anna Moiseieva, Olha Oliinyk, Larissa
+            Frescher, Stanislav Vidulin
+          </Ticker>
         </Footer>
       </LayoutComponent>
-      </UserContext.Provider>
+    </UserContext.Provider>
   );
 }
 

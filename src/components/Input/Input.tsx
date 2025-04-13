@@ -9,9 +9,7 @@ function Input({
   onChange, 
   label, 
   id,
-  search,
   error,
-  checked
 }: InputProps) {
   return (
     <InputContainer>
@@ -23,8 +21,6 @@ function Input({
      onChange={onChange}
      type={type}
      id={id}
-     isSearch = {search}
-     checked={checked}
      />
      <ErrorMessage>{error}</ErrorMessage>
     </InputContainer>

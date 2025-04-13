@@ -8,7 +8,5 @@ export interface InputProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void, 
   label?: string, 
   id?: string,
-  search?: boolean,
   error?: string,
-  checked?: boolean
 }

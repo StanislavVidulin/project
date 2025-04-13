@@ -12,7 +12,7 @@ export const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #f5b0bc;
+  background-color: #afc5de;
 `;
 
 export const LogoImage = styled.img`
@@ -23,19 +23,29 @@ export const LogoImage = styled.img`
 export const Nav = styled.nav`
   display: flex;
   gap: 15px;
+  /* &:hover {
+    background-color: grey;
+  } */
 `;
 
 export const StyledNavLink = styled(NavLink)`
   font-size: 24px;
-  color: #38121f;
+  color: #572802;
   font-weight: bold;
   text-decoration: none;
 `;
 
 export const Main = styled.main`
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   flex: 1;
+  background-image: linear-gradient(
+    to right,
+    rgb(4, 1, 19),
+    rgb(171, 194, 240)
+  );
 `;
 
 export const Footer = styled.footer`
@@ -44,16 +54,29 @@ export const Footer = styled.footer`
   align-items: center;
   gap: 30px;
   padding: 20px;
-  background-color: #8a1e30;
-  color: white;
-`;
-
-export const LogoText = styled.div`
-  font-size: 28px;
-  font-weight: bold;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background-color: #afc5de;
+  color: #572802;
 `;
 
 export const ButtonContainer = styled.div`
   width: 50px;
+`;
+
+export const Ticker = styled.div`
+  white-space: nowrap;
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 20s linear infinite;
+  color: #572802;
+  font-size: 30px;
+  font-weight: bold;
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
 `;

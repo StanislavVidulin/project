@@ -1,30 +1,33 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useContext } from "react";
 
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
-import { InputContainer, LoginFormComponent, Title } from "./styles";
+import {
+  ErrorContainer,
+  InputContainer,
+  LoginFormComponent,
+  Title,
+} from "./styles";
 import { LoginFormValues } from "./types";
-import { useContext } from "react";
 import { UserContext } from "../../components/Layout/Layout";
 import Spinner from "../../components/Spinner/Spinner";
 
 function LoginForm() {
-
-  const { isLoading, getUser } = useContext(UserContext);
+  const { isLoading, getUser, error } = useContext(UserContext);
 
   const schema = Yup.object().shape({
     email: Yup.string()
       .required("Field email is required")
-      .email("Field has type email (@ и т.д.)")
+      .email("Field has type email (@ etc.)")
       .max(40, "Max 40 symbols")
       .min(12, "Min 12 symbols"),
     password: Yup.string()
-      .typeError("Password must be a number")
       .required("Field password is required")
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "Пароль должен содержать min 8 символов (заглавная буква, строчная, цифра, спецсимвол)"
+        "Password must contain at least 8 characters, including an uppercase letter, a lowercase letter, a number, and a special character."
       ),
   });
 
@@ -35,35 +38,39 @@ function LoginForm() {
     } as LoginFormValues,
     validationSchema: schema,
     validateOnChange: false,
-    onSubmit: (values: LoginFormValues) => {
-      console.table(values);
-    },
+    onSubmit: getUser,
   });
 
   return (
     <LoginFormComponent onSubmit={formik.handleSubmit}>
       <Title>Login form</Title>
-      {isLoading? <Spinner /> : <InputContainer>
-      <Input
-        name="email"
-        label="Email *"
-        id="email_id"
-        placeholder="Enter your email"
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        error={formik.errors.email}
-      />
-      <Input
-        name="password"
-        label="Password *"
-        id="password_id"
-        placeholder="Enter your password"
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        error={formik.errors.password}
-      />
-      </InputContainer>}
-      <Button name="LOGIN" onClick={getUser}/>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <InputContainer>
+          <Input
+            name="email"
+            label="Email *"
+            id="email_id"
+            placeholder="Enter your email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.errors.email}
+          />
+          <Input
+            name="password"
+            label="Password *"
+            id="password_id"
+            placeholder="Enter your password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.errors.password}
+          />
+        </InputContainer>
+      )}
+      {/* <Button name="LOGIN" disabled={(formik.isValid && formik.dirty)}/> */}
+      <Button name="LOGIN" />
+      <ErrorContainer>{error}</ErrorContainer>
     </LoginFormComponent>
   );
 }
