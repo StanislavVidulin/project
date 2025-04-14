@@ -4,13 +4,13 @@ import Layout from "./components/Layout/Layout";
 import GlobalStyles from "./styles/GlobalStyles";
 import LoginForm from "./pages/LoginForm/LoginForm";
 import UserData from "./pages/UserData/UserData";
-import PageNotFound from "./pages/PageNotFound/PageNotFound";
+// import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Home from "./pages/Home/Home";
 import UserHistory from "./pages/UserHistory/UserHistory";
 
 function App() {
   return (
-    <BrowserRouter basename="/project">
+    <BrowserRouter>
       <GlobalStyles />
       <Layout>
         <Routes>
@@ -18,7 +18,7 @@ function App() {
           <Route path='/loginForm' element={<LoginForm />}/>
           <Route path='/userData' element={<UserData />}/>
           <Route path='/userHistory' element={<UserHistory />}/>
-          <Route path='*' element={<PageNotFound />}/>
+          {/* <Route path='*' element={<PageNotFound />}/> */}
         </Routes>
       </Layout>
     </BrowserRouter>
