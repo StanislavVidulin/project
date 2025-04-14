@@ -14,7 +14,7 @@ function App() {
       <GlobalStyles />
       <Layout>
         <Routes>
-          <Route path='/' element={<Home />}/>
+          <Route path='/project' element={<Home />}/>
           <Route path='/loginForm' element={<LoginForm />}/>
           <Route path='/userData' element={<UserData />}/>
           <Route path='/userHistory' element={<UserHistory />}/>
