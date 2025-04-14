@@ -1,21 +1,24 @@
 import { useContext } from "react";
 import { AddressContainer, Title, UserAvatar, UserDataWrapper } from "./styles";
 import { UserContext } from "../../components/Layout/Layout";
+import Button from "../../components/Button/Button";
 
 function UserData() {
-  const { userData } = useContext(UserContext);
+  
+  const { userData, getUser } = useContext(UserContext);
 
   return (
     <UserDataWrapper>
       <Title>
-        {userData?.name?.title} {userData?.name?.first} {userData?.name?.last}
+        {userData?.titleName} {userData?.firstName} {userData?.lastName}
       </Title>
-      <UserAvatar src={userData?.picture?.medium} alt="user avatar" />
+      <UserAvatar src={userData?.picture} alt="user avatar" />
       <AddressContainer>
-        {userData?.location?.country}
-        {userData?.location?.country && userData?.location?.city ? ', ' : ''}
-        {userData?.location?.city}
+        {userData?.country}
+        {userData?.country && userData?.city ? ", " : ""}
+        {userData?.city}
       </AddressContainer>
+      <Button name="GET ANOTHER USER" onClick={getUser} />
     </UserDataWrapper>
   );
 }

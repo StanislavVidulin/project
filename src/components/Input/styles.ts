@@ -14,6 +14,7 @@ export const InputComponent = styled.input`
   outline: none;
   border: 1px solid black;
   font-size: 18px;
+  border-radius: 6px;
 `;
 
 export const Label = styled.label`

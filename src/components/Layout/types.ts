@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface LayoutProps {
   children: ReactNode;
@@ -10,8 +10,19 @@ export interface NavLinkObj {
 }
 
 export interface UserContextInterface {
-  userData: any;
+  userData: userInfo | undefined;
   error: string | undefined;
   isLoading: boolean;
   getUser: () => void;
+  changeCard: (() => void) | Dispatch<SetStateAction<userInfo[]>>
+  userCard: userInfo[];
+}
+
+export interface userInfo {
+  titleName: string;
+  firstName: string;
+  lastName: string;
+  country: string;
+  city: string;
+  picture: string;
 }

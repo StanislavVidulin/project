@@ -57,10 +57,6 @@ export const Footer = styled.footer`
   color: #572802;
 `;
 
-export const ButtonContainer = styled.div`
-  width: 50px;
-`;
-
 export const Ticker = styled.div`
   white-space: nowrap;
   display: inline-block;
@@ -78,4 +74,9 @@ export const Ticker = styled.div`
       transform: translateX(-100%);
     }
   }
+`;
+
+export const LeftItems = styled.div`
+  display: flex;
+  gap: 20px;
 `;

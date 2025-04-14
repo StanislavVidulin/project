@@ -6,6 +6,7 @@ import LoginForm from "./pages/LoginForm/LoginForm";
 import UserData from "./pages/UserData/UserData";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import Home from "./pages/Home/Home";
+import UserHistory from "./pages/UserHistory/UserHistory";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/loginForm' element={<LoginForm />}/>
           <Route path='/userData' element={<UserData />}/>
+          <Route path='/userHistory' element={<UserHistory />}/>
           <Route path='*' element={<PageNotFound />}/>
         </Routes>
       </Layout>

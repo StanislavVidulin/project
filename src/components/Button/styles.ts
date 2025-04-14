@@ -1,11 +1,17 @@
 import styled from "@emotion/styled";
 
-export const ButtonComponent = styled.button`
+interface ButtonComponentStyledProps {
+  danger?: boolean;
+}
+
+export const ButtonComponent = styled.button<ButtonComponentStyledProps>`
   height: fit-content;
   padding: 20px;
-  background-color: rgb(200, 187, 42);
+  background: ${({ danger }) =>
+    danger ? "rgb(205, 29, 29)" : "rgb(200, 187, 42)"};
+  /* background-color: rgb(200, 187, 42); */
   border: none;
-  border-radius: 6px;
+  border-radius: 12px;
   font-size: 26px;
   color: white;
   cursor: pointer;
