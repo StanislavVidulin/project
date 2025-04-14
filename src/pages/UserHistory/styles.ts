@@ -21,6 +21,7 @@ export const UserAvatar = styled.img`
 
 export const CardComponent = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 30px;
   font-size: 24px;
