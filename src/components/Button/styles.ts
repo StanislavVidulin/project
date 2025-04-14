@@ -10,7 +10,7 @@ export const ButtonComponent = styled.button`
   color: white;
   cursor: pointer;
 
-  /* &:disabled {
+  &:disabled {
     background-color: rgb(202, 200, 200);
-  } */
+  }
 `;

@@ -1,5 +1,7 @@
 import { v4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { createContext, useState } from "react";
 
 import { LayoutProps, NavLinkObj, UserContextInterface } from "./types";
 import { navLinksData } from "./data";
@@ -11,9 +13,9 @@ import {
   Main,
   Footer,
   Ticker,
+  LogoImage,
 } from "./styles";
-import axios from "axios";
-import { createContext, useState } from "react";
+import Logo from "../../assets/logo.svg";
 
 export const UserContext = createContext<UserContextInterface>({
   userData: undefined,
@@ -72,6 +74,9 @@ function Layout({ children }: LayoutProps) {
     >
       <LayoutComponent>
         <Header>
+          <Link to="/">
+            <LogoImage src={Logo}></LogoImage>
+          </Link>
           <Link to="/"></Link>
           <Nav>{navLinks}</Nav>
         </Header>

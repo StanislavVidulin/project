@@ -17,15 +17,11 @@ export const Header = styled.header`
 
 export const LogoImage = styled.img`
   width: 60px;
-  border-radius: 50%;
 `;
 
 export const Nav = styled.nav`
   display: flex;
   gap: 15px;
-  /* &:hover {
-    background-color: grey;
-  } */
 `;
 
 export const StyledNavLink = styled(NavLink)`
@@ -33,6 +29,9 @@ export const StyledNavLink = styled(NavLink)`
   color: #572802;
   font-weight: bold;
   text-decoration: none;
+  &:hover {
+    background-color: grey;
+  }
 `;
 
 export const Main = styled.main`

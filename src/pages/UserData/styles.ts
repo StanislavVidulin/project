@@ -19,7 +19,8 @@ export const Title = styled.div`
 export const UserAvatar = styled.img`
   width: 250px;
   height: 250px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 `;
 
 export const AddressContainer = styled.div`

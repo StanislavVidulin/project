@@ -68,8 +68,7 @@ function LoginForm() {
           />
         </InputContainer>
       )}
-      {/* <Button name="LOGIN" disabled={(formik.isValid && formik.dirty)}/> */}
-      <Button name="LOGIN" />
+      <Button name="LOGIN" disabled={isLoading}/>
       <ErrorContainer>{error}</ErrorContainer>
     </LoginFormComponent>
   );

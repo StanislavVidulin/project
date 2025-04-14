@@ -13,7 +13,7 @@ function UserData() {
       <UserAvatar src={userData?.picture?.medium} alt="user avatar" />
       <AddressContainer>
         {userData?.location?.country}
-        {userData?.location?.country && userData?.location?.city ? ',' : ''}
+        {userData?.location?.country && userData?.location?.city ? ', ' : ''}
         {userData?.location?.city}
       </AddressContainer>
     </UserDataWrapper>

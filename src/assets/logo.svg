@@ -1,0 +1,30 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgb(4, 1, 19)" />
+      <stop offset="100%" stop-color="rgb(171, 194, 240)" />
+    </linearGradient>
+
+    <!-- Gold accent -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgb(201, 186, 22)" />
+      <stop offset="100%" stop-color="rgb(201, 186, 22)" />
+    </linearGradient>
+
+    <style>
+      .text { font: bold 22px sans-serif; fill: url(#goldGradient); letter-spacing: 1px; }
+    </style>
+  </defs>
+
+  <!-- Circle Background -->
+  <circle cx="100" cy="100" r="90" fill="url(#mainGradient)" />
+
+  <!-- Stylized D and T monogram -->
+  <path d="M60,70 v60 h15 q20,0 20,-30 q0,-30 -20,-30 h-15 z
+           M110,70 v60 h15 v-20 h15 v-20 h-15 v-20 h-15 z"
+        fill="url(#goldGradient)" />
+
+  <!-- Brand Text -->
+  <text x="100" y="180" text-anchor="middle" class="text">DreamTeam</text>
+</svg>
