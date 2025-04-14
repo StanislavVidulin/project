@@ -10,7 +10,7 @@ import UserHistory from "./pages/UserHistory/UserHistory";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/project">
       <GlobalStyles />
       <Layout>
         <Routes>
